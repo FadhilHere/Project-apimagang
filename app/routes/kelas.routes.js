@@ -1,13 +1,13 @@
 module.exports = (app) => {
-  const matakuliah = require("../controllers/kelas.controller");
+  const kelas = require("../controllers/kelas.controller");
 
   var router = require("express").Router();
 
-  router.post("/", matakuliah.create);
-  router.get("/", matakuliah.findAll);
-  router.get("/:id", matakuliah.findOne);
-  router.put("/:id", matakuliah.update);
-  router.delete("/:id", matakuliah.delete);
+  router.post("/", kelas.create);
+  router.get("/", kelas.findAll);
+  router.get("/:id", kelas.findOne);
+  router.put("/:id", kelas.update);
+  router.delete("/:id", kelas.delete);
 
   app.use("/api/kelas", router);
 };
