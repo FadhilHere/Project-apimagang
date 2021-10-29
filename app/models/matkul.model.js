@@ -5,7 +5,7 @@ module.exports = (mongoose) => {
     "matkul",
     mongoose.Schema(
       {
-        matakuliah: String,
+        matkul: String,
         kode: String,
       },
       {

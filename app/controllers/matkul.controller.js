@@ -3,7 +3,7 @@ const Matakuliah = db.matkul;
 
 exports.create = (req, res) => {
   const matkul = new Matakuliah({
-    matakuliah: req.body.matakuliah,
+    matkul: req.body.matkul,
     kode: req.body.kode,
   });
 
@@ -22,7 +22,7 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-  const matkul = req.query.matakuliah;
+  const matkul = req.query.matkul;
   var condition = matkul
     ? { matkul: { $regex: new RegExp(matkul), $options: "i" } }
     : {};
