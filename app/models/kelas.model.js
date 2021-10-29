@@ -9,7 +9,7 @@ module.exports = (mongoose) => {
         id_matakuliah: [
           {
             type: Schema.Types.ObjectId,
-            ref: "matakuliah",
+            ref: "matkul",
           },
         ],
       },
