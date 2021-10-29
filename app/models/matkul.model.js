@@ -2,7 +2,7 @@ const { Schema } = require("mongoose");
 
 module.exports = (mongoose) => {
   const Matakuliah = mongoose.model(
-    "matakuliah",
+    "matkul",
     mongoose.Schema(
       {
         matakuliah: String,
