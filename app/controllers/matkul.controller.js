@@ -1,15 +1,15 @@
 const db = require("../models");
-const Matakuliah = db.matkul;
+const Matakuliah = db.matakuliah;
 
 exports.create = (req, res) => {
-  const matkul = new Matakuliah({
+  const matakuliah = new Matakuliah({
     matakuliah: req.body.matakuliah,
     kode: req.body.kode,
   });
 
   // Save Matakuliah in the database
-  matkul
-    .save(matkul)
+  matakuliah
+    .save(matakuliah)
     .then((data) => {
       res.send(data);
     })
@@ -22,9 +22,9 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-  const matkul = req.query.matakuliah;
-  var condition = matkul
-    ? { matkul: { $regex: new RegExp(matkul), $options: "i" } }
+  const matakuliah = req.query.matakuliah;
+  var condition = matakuliah
+    ? { matakuliah: { $regex: new RegExp(matakuliah), $options: "i" } }
     : {};
 
   Matakuliah.find(condition)
