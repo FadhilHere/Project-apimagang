@@ -46,6 +46,7 @@ require("./app/routes/matkul.routes")(app);
 require("./app/routes/kelas.routes")(app);
 require("./app/routes/ruangan.routes")(app);
 require("./app/routes/prodi.routes")(app);
+require("./app/routes/datamahasiswa.routes")(app);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

@@ -1,6 +1,6 @@
 module.exports = (mongoose) => {
   const Datamhs = mongoose.model(
-    "datamhs",
+    "datamahasiswa",
     mongoose.Schema(
       {
         nim: String,

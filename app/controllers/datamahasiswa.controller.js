@@ -1,8 +1,8 @@
 const db = require("../models");
-const Datamhs = db.datamhs;
+const Datamhs = db.datamahasiswa;
 
 exports.create = (req, res) => {
-  const datamhs = new Datamhs({
+  const datamahasiswa = new Datamhs({
     nim: req.body.nim,
     nama: req.body.nama,
     prodi: req.body.prodi,
@@ -17,7 +17,7 @@ exports.create = (req, res) => {
   });
 
   // Save Datamhs in the database
-  datamhs
+  datamahasiswa
     .save(datamhs)
     .then((data) => {
       res.send(data);
