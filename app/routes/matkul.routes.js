@@ -1,13 +1,13 @@
 module.exports = (app) => {
-  const matakuliah = require("../controllers/matkul.controller");
+  const matkul = require("../controllers/matkul.controller");
 
   var router = require("express").Router();
 
-  router.post("/", matakuliah.create);
-  router.get("/", matakuliah.findAll);
-  router.get("/:id", matakuliah.findOne);
-  router.put("/:id", matakuliah.update);
-  router.delete("/:id", matakuliah.delete);
+  router.post("/", matkul.create);
+  router.get("/", matkul.findAll);
+  router.get("/:id", matkul.findOne);
+  router.put("/:id", matkul.update);
+  router.delete("/:id", matkul.delete);
 
   app.use("/api/matkul", router);
 };
