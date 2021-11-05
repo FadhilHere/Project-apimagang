@@ -7,18 +7,57 @@ exports.create = (req, res) => {
     kode: req.body.kode,
   });
 
+  Matakuliah.find({
+    kode: req.body.kode,
+  }).then((data) => {
+    console.log(data[0]);
+    if (!data[0]) {
+      matkul
+        .save(matkul)
+        .then((data) => {
+          res.send(data);
+        })
+        .catch((err) => {
+          res.status(500).send({
+            message:
+              err.message || "Some error occurred while creating the matkul.",
+          });
+        });
+    } else {
+      res.send({ message: "Matkul already exists " });
+    }
+  });
   // Save Matakuliah in the database
-  matkul
-    .save(matkul)
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while creating the Matakuliah.",
-      });
-    });
+  // Matakuliah.find({
+  //   kode: req.body.kode,
+  // }).then((data) => {
+  //   console.log(data[0]);
+  //   if (!data[0]) {
+  //     matkul
+  //       .save(matkul)
+  //       .then((data) => {
+  //         res.send(data);
+  //       })
+  //       .catch((err) => {
+  //         res.status(500).send({
+  //           message:
+  //             err.message ||
+  //             "Some error occurred while creating the Matakuliah.",
+  //         });
+  //       });
+  //   }
+  // });
+  //   matkul
+  //     .save(matkul)
+  //     .then((data) => {
+  //       res.send(data);
+  //     })
+  //     .catch((err) => {
+  //       res.status(500).send({
+  //         message:
+  //           err.message || "Some error occurred while creating the Matakuliah.",
+  //       });
+  //     });
 };
 
 exports.findAll = (req, res) => {
