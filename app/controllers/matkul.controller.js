@@ -24,7 +24,7 @@ exports.create = (req, res) => {
           });
         });
     } else {
-      res.send({ message: "Matkul already exists " });
+      res.send({ message: "Kode already exists " });
     }
   });
   // Save Matakuliah in the database
