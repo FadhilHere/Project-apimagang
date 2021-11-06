@@ -24,7 +24,7 @@ exports.create = (req, res) => {
           });
         });
     } else {
-      res.status(404).send({ message: err.message || "iko alah ado" });
+      res.status(404).send({ message: "iko alah ado" });
     }
   });
   // Save Matakuliah in the database
