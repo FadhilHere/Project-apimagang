@@ -18,13 +18,13 @@ exports.create = (req, res) => {
           res.send(data);
         })
         .catch((err) => {
-          res.status(404).send({
+          res.status(500).send({
             message:
               err.message || "Some error occurred while creating the matkul.",
           });
         });
     } else {
-      res.send({ message: "Kode already exists " });
+      res.status(404).send({ message: "Kode already exists " });
     }
   });
   // Save Matakuliah in the database
