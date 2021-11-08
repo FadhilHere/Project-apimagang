@@ -7,16 +7,26 @@ exports.create = (req, res) => {
   });
 
   // Save Prodi in the database
-  prodi
-    .save(prodi)
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || "Some error occurred while creating the Prodi.",
-      });
-    });
+  Prodi.find({
+    nama_prodi: req.body.nama_prodi,
+  }).then((data) => {
+    console.log(data[0]);
+    if (!data[0]) {
+      prodi
+        .save(prodi)
+        .then((data) => {
+          res.send(data);
+        })
+        .catch((err) => {
+          res.status(500).send({
+            message:
+              err.message || "Some error occurred while creating the matkul.",
+          });
+        });
+    } else {
+      res.status(404).send({ message: "Prodi yg anda input sudah ada!" });
+    }
+  });
 };
 
 exports.findAll = (req, res) => {
