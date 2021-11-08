@@ -93,19 +93,38 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   const id = req.params.id;
 
-  Matakuliah.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
-    .then((data) => {
-      if (!data) {
-        res.status(404).send({
-          message: `Cannot update Matakuliah with id=${id}. Maybe Matakuliah was not found!`,
+  Matakuliah.find({
+    matkul: req.body.matkul,
+  }).then((data) => {
+    console.log(data[0]);
+    if (!data[0]) {
+      Matakuliah.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+        .then((data) => {
+          res.send(data);
+        })
+        .catch((err) => {
+          res.status(500).send({
+            message:
+              err.message || "Some error occurred while updating the matkul.",
+          });
         });
-      } else res.send({ message: "Matakuliah was updated successfully." });
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: "Error updating Matakuliah with id=" + id,
-      });
-    });
+    } else {
+      res.status(404).send({ message: "matkul yg anda input sudah ada!" });
+    }
+  });
+  // Matakuliah.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+  //   .then((data) => {
+  //     if (!data) {
+  //       res.status(404).send({
+  //         message: `Cannot update Matakuliah with id=${id}. Maybe Matakuliah was not found!`,
+  //       });
+  //     } else res.send({ message: "Matakuliah was updated successfully." });
+  //   })
+  //   .catch((err) => {
+  //     res.status(500).send({
+  //       message: "Error updating Matakuliah with id=" + id,
+  //     });
+  //   });
 };
 exports.delete = (req, res) => {
   const id = req.params.id;
