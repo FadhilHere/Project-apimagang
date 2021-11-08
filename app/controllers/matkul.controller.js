@@ -24,7 +24,7 @@ exports.create = (req, res) => {
           });
         });
     } else {
-      res.status(404).send({ message: "iko alah ado" });
+      res.status(404).send({ message: "Kode yg anda input sudah ada!" });
     }
   });
   // Save Matakuliah in the database
