@@ -8,16 +8,26 @@ exports.create = (req, res) => {
   });
 
   // Save Kelas in the database
-  kelas
-    .save(kelas)
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || "Some error occurred while creating the Kelas.",
-      });
-    });
+  Kelas.find({
+    kelas: req.body.kelas,
+  }).then((data) => {
+    console.log(data[0]);
+    if (!data[0]) {
+      kelas
+        .save(kelas)
+        .then((data) => {
+          res.send(data);
+        })
+        .catch((err) => {
+          res.status(500).send({
+            message:
+              err.message || "Some error occurred while creating the matkul.",
+          });
+        });
+    } else {
+      res.status(404).send({ message: "kelas yg anda input sudah ada!" });
+    }
+  });
 };
 
 exports.findAll = (req, res) => {
