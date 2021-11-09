@@ -100,7 +100,11 @@ exports.update = (req, res) => {
     if (!data[0]) {
       Matakuliah.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
         .then((data) => {
-          res.send(data);
+          if (!data) {
+            res.status(404).send({
+              message: `Cant find matkul with id=${id}.`,
+            });
+          } else res.send({ message: "Matkul updated!" });
         })
         .catch((err) => {
           res.status(500).send({
