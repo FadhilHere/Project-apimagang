@@ -62,19 +62,29 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   const id = req.params.id;
 
-  Ruangan.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
-    .then((data) => {
-      if (!data) {
-        res.status(404).send({
-          message: `Cannot update Ruangan with id=${id}. Maybe Ruangan was not found!`,
+  Ruangan.find({
+    ruangan: req.body.ruangan,
+  }).then((data) => {
+    console.log(data[0]);
+    if (!data[0]) {
+      Ruangan.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+        .then((data) => {
+          if (!data) {
+            res.status(404).send({
+              message: `Cant find ruangan with id=${id}.`,
+            });
+          } else res.send({ message: "ruangan updated!" });
+        })
+        .catch((err) => {
+          res.status(500).send({
+            message:
+              err.message || "Some error occurred while updating the ruangan.",
+          });
         });
-      } else res.send({ message: "Ruangan was updated successfully." });
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: "Error updating Ruangan with id=" + id,
-      });
-    });
+    } else {
+      res.status(404).send({ message: "ruangan yg anda input sudah ada!" });
+    }
+  });
 };
 exports.delete = (req, res) => {
   const id = req.params.id;

@@ -62,19 +62,29 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   const id = req.params.id;
 
-  Prodi.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
-    .then((data) => {
-      if (!data) {
-        res.status(404).send({
-          message: `Cannot update Prodi with id=${id}. Maybe Prodi was not found!`,
+  Prodi.find({
+    nama_prodi: req.body.nama_prodi,
+  }).then((data) => {
+    console.log(data[0]);
+    if (!data[0]) {
+      Prodi.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+        .then((data) => {
+          if (!data) {
+            res.status(404).send({
+              message: `Cant find Prodi with id=${id}.`,
+            });
+          } else res.send({ message: "Prodi updated!" });
+        })
+        .catch((err) => {
+          res.status(500).send({
+            message:
+              err.message || "Some error occurred while updating the Prodi.",
+          });
         });
-      } else res.send({ message: "Prodi was updated successfully." });
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: "Error updating Prodi with id=" + id,
-      });
-    });
+    } else {
+      res.status(404).send({ message: "Prodi yg anda input sudah ada!" });
+    }
+  });
 };
 exports.delete = (req, res) => {
   const id = req.params.id;
