@@ -7,7 +7,7 @@ exports.create = (req, res) => {
     kode: req.body.kode,
   });
 
-  Matakuliah.find({
+  Matakuliah.findAll({
     kode: req.body.kode,
     matkul: req.body.matkul,
   }).then((data) => {
