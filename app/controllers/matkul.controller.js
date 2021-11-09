@@ -9,6 +9,7 @@ exports.create = (req, res) => {
 
   Matakuliah.find({
     kode: req.body.kode,
+    matkul: req.body.matkul,
   }).then((data) => {
     console.log(data[0]);
     if (!data[0]) {
