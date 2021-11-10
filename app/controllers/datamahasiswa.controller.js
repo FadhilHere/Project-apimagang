@@ -1,116 +1,120 @@
-// const db = require("../models");
-// const Datamhs = db.datamahasiswa;
+const db = require("../models");
+const Datamhs = db.datamahasiswa;
 
-// exports.create = (req, res) => {
-//   const datamahasiswa = new Datamhs({
-//     nim: req.body.nim,
-//     nama: req.body.nama,
-//     prodi: req.body.prodi,
-//     email: req.body.email,
-//     alamat: req.body.alamat,
-//     notelp: req.body.notelp,
-//     alamatortu: req.body.alamatortu,
-//     foto: req.files[0].filename,
-//     nik: req.body.nik,
-//     gender: req.body.gender,
-//     kelas: req.body.gender,
-//   });
+exports.create = (req, res) => {
+  const datamahasiswa = new Datamhs({
+    nim: req.body.nim,
+    nama: req.body.nama,
+    id_prodi: req.body.id_prodi,
+    email: req.body.email,
+    alamat: req.body.alamat,
+    notelp: req.body.notelp,
+    alamatortu: req.body.alamatortu,
+    // foto: req.files[0].filename,
+    nik: req.body.nik,
+    gender: req.body.gender,
+    id_kelas: req.body.id_kelas,
+  });
 
-//   // Save Datamhs in the database
-//   datamahasiswa
-//     .save(datamhs)
-//     .then((data) => {
-//       res.send(data);
-//     })
-//     .catch((err) => {
-//       res.status(500).send({
-//         message:
-//           err.message || "Some error occurred while creating the Datamhs.",
-//       });
-//     });
-// };
+  // Save Datamhs in the database
+  datamahasiswa
+    .save(datamahasiswa)
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the Datamhs.",
+      });
+    });
+};
 
-// exports.findAll = (req, res) => {
-//   const nama = req.query.nama;
-//   var condition = nama
-//     ? { nama: { $regex: new RegExp(nama), $options: "i" } }
-//     : {};
+exports.findAll = (req, res) => {
+  const nama = req.query.nama;
+  var condition = nama
+    ? { nama: { $regex: new RegExp(nama), $options: "i" } }
+    : {};
 
-//   Datamhs.find(condition)
-//     .then((data) => {
-//       res.send(data);
-//     })
-//     .catch((err) => {
-//       res.status(500).send({
-//         message: err.message || "Some error occurred while retrieving.",
-//       });
-//     });
-// };
+  Datamhs.find(condition)
+    .populate("id_prodi")
+    .populate("id_kelas")
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Some error occurred while retrieving.",
+      });
+    });
+};
 
-// exports.findOne = (req, res) => {
-//   const id = req.params.id;
+exports.findOne = (req, res) => {
+  const id = req.params.id;
 
-//   Datamhs.findById(id)
-//     .then((data) => {
-//       if (!data) res.status(404).send({ message: "Not found with id " + id });
-//       else res.send(data);
-//     })
-//     .catch((err) => {
-//       res.status(500).send({ message: "Error retrieving with id=" + id });
-//     });
-// };
+  Datamhs.findById(id)
+    .populate("id_prodi")
+    .populate("id_kelas")
+    .then((data) => {
+      if (!data) res.status(404).send({ message: "Not found with id " + id });
+      else res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({ message: "Error retrieving with id=" + id });
+    });
+};
 
-// exports.update = (req, res) => {
-//   const id = req.params.id;
-//   const datamhs2 = {
-//     nim: req.body.nim,
-//     nama: req.body.nama,
-//     prodi: req.body.prodi,
-//     email: req.body.email,
-//     alamat: req.body.alamat,
-//     notelp: req.body.notelp,
-//     alamatortu: req.body.alamatortu,
-//     foto: req.files[0].filename,
-//     nik: req.body.nik,
-//     gender: req.body.gender,
-//     kelas: req.body.gender,
-//   };
-//   Datamhs.findByIdAndUpdate(id, datamhs2, { useFindAndModify: false })
-//     .then((data) => {
-//       if (!data) {
-//         res.status(404).send({
-//           message: `Cannot update Datamhs with id=${id}. Maybe Datamhs was not found!`,
-//         });
-//       } else res.send({ message: "Datamhs was updated successfully." });
-//     })
-//     .catch((err) => {
-//       res.status(500).send({
-//         message: "Error updating Datamhs with id=" + id,
-//       });
-//     });
-// };
-// exports.delete = (req, res) => {
-//   const id = req.params.id;
+exports.update = (req, res) => {
+  const id = req.params.id;
+  const datamhs2 = {
+    nim: req.body.nim,
+    nama: req.body.nama,
+    id_prodi: req.body.id_prodi,
+    email: req.body.email,
+    alamat: req.body.alamat,
+    notelp: req.body.notelp,
+    alamatortu: req.body.alamatortu,
+    foto: req.files[0].filename,
+    nik: req.body.nik,
+    gender: req.body.gender,
+    id_kelas: req.body.id_kelas,
+  };
+  Datamhs.findByIdAndUpdate(id, datamhs2, { useFindAndModify: false })
+    .then((data) => {
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot update Datamhs with id=${id}. Maybe Datamhs was not found!`,
+        });
+      } else res.send({ message: "Datamhs was updated successfully." });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Error updating Datamhs with id=" + id,
+      });
+    });
+};
+exports.delete = (req, res) => {
+  const id = req.params.id;
 
-//   Datamhs.findByIdAndRemove(id)
-//     .then((data) => {
-//       if (!data) {
-//         res.status(404).send({
-//           message: `Cannot delete Datamhs with id=${id}. Maybe Datamhs was not found!`,
-//         });
-//       } else {
-//         res.send({
-//           message: "Datamhs was deleted successfully!",
-//         });
-//       }
-//     })
-//     .catch((err) => {
-//       res.status(500).send({
-//         message: "Could not delete Datamhs with id=" + id,
-//       });
-//     });
-// };
+  Datamhs.findByIdAndRemove(id)
+    .then((data) => {
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot delete Datamhs with id=${id}. Maybe Datamhs was not found!`,
+        });
+      } else {
+        res.send({
+          message: "Datamhs was deleted successfully!",
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Could not delete Datamhs with id=" + id,
+      });
+    });
+};
 
-// exports.deleteAll = (req, res) => {};
+exports.deleteAll = (req, res) => {};
 
-// exports.findAllPublished = (req, res) => {};
+exports.findAllPublished = (req, res) => {};
