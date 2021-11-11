@@ -64,39 +64,39 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   const id = req.params.id;
 
-  // Kelas.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
-  //   .then((data) => {
-  //     if (!data) {
-  //       res.status(404).send({
-  //         message: `Cannot update Kelas with id=${id}. Maybe Kelas was not found!`,
-  //       });
-  //     } else res.send({ message: "Kelas was updated successfully." });
-  //   })
-  //   .catch((err) => {
-  //     res.status(500).send({
-  //       message: "Error updating Kelas with id=" + id,
-  //     });
-  //   });
+  Kelas.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    .then((data) => {
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot update Kelas with id=${id}. Maybe Kelas was not found!`,
+        });
+      } else res.send({ message: "Kelas was updated successfully." });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Error updating Kelas with id=" + id,
+      });
+    });
 
-  Kelas.find({
-    kelas: req.body.kelas,
-  }).then((data) => {
-    console.log(data[0]);
-    if (!data[0]) {
-      Kelas.findByIdAndUpdate(id, req.body, { useFindAndModify: false }).then(
-        (data) => {
-          res.send(data);
-          if (!data) {
-            res.status(404).send({
-              message: `Cant find kelas with id=${id}.`,
-            });
-          } else res.send({ message: "kelas updated!" });
-        }
-      );
-    } else {
-      res.status(404).send({ message: "kelas yg anda input sudah ada!" });
-    }
-  });
+  // Kelas.find({
+  //   kelas: req.body.kelas,
+  // }).then((data) => {
+  //   console.log(data[0]);
+  //   if (!data[0]) {
+  //     Kelas.findByIdAndUpdate(id, req.body, { useFindAndModify: false }).then(
+  //       (data) => {
+  //         res.send(data);
+  //         if (!data) {
+  //           res.status(404).send({
+  //             message: `Cant find kelas with id=${id}.`,
+  //           });
+  //         } else res.send({ message: "kelas updated!" });
+  //       }
+  //     );
+  //   } else {
+  //     res.status(404).send({ message: "kelas yg anda input sudah ada!" });
+  //   }
+  // });
 };
 exports.delete = (req, res) => {
   const id = req.params.id;
