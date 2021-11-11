@@ -94,24 +94,19 @@ exports.update = (req, res) => {
   const id = req.params.id;
 
   Matakuliah.find({
-    matkul: req.body.matkul,
+    kode: req.body.kode,
   }).then((data) => {
     console.log(data[0]);
     if (!data[0]) {
-      Matakuliah.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
-        .then((data) => {
-          if (!data) {
-            res.status(404).send({
-              message: `Cant find matkul with id=${id}.`,
-            });
-          } else res.send({ message: "Matkul updated!" });
-        })
-        .catch((err) => {
-          res.status(500).send({
-            message:
-              err.message || "Some error occurred while updating the matkul.",
+      Matakuliah.findByIdAndUpdate(id, req.body, {
+        useFindAndModify: false,
+      }).then((data) => {
+        if (!data) {
+          res.status(404).send({
+            message: `Cant find matkul with id=${id}.`,
           });
-        });
+        } else res.send({ message: "Matkul updated!" });
+      });
     } else {
       res.status(404).send({ message: "matkul yg anda input sudah ada!" });
     }
