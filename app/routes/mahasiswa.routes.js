@@ -12,16 +12,10 @@ module.exports = (app) => {
   var upload = multer({
     storage: multer.diskStorage({
       destination: function (req, file, callback) {
-        callback(null, "./uploads/gambar");
+        callback(null, path.join(__dirname, "../uploads/gambar"));
       },
       filename: function (req, file, callback) {
-        callback(
-          null,
-          Date.now() +
-            Math.floor(Math.random() * 9000000000000) +
-            1000000000000 +
-            path.extname(file.originalname)
-        );
+        callback(null, Date.now() + path.extname(file.originalname));
       },
     }),
     fileFilter: function (req, file, callback) {
