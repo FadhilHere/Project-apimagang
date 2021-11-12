@@ -3,7 +3,7 @@ const Mahasiswa = db.mahasiswa;
 
 exports.create = (req, res) => {
   const mahasiswa = new Mahasiswa({
-    // foto: req.files[0].filename,
+    foto: req.files[0].filename,
     nama: req.body.nama,
     nim: req.body.nim,
     nik: req.body.nik,
@@ -79,7 +79,7 @@ exports.update = (req, res) => {
   const id = req.params.id;
 
   const mahasiswa2 = {
-    // foto: req.files[0].filename,
+    foto: req.files[0].filename,
     nama: req.body.nama,
     nim: req.body.nim,
     nik: req.body.nik,
