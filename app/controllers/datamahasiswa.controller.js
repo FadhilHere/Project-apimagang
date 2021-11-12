@@ -74,7 +74,7 @@ exports.update = (req, res) => {
     alamat: req.body.alamat,
     notelp: req.body.notelp,
     alamatortu: req.body.alamatortu,
-    foto: req.files[0].filename,
+    // foto: req.files[0].filename,
     nik: req.body.nik,
     gender: req.body.gender,
     id_kelas: req.body.id_kelas,
