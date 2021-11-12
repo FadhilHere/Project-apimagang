@@ -3,7 +3,7 @@ module.exports = (app) => {
   var router = require("express").Router();
 
   var multer = require("multer");
-  var path = require("path");
+  const path = require("path");
   const generateFileName = () => {
     const dateNow = Date.now();
     const random = Math.floor(Math.random() * 9000000000000) + 1000000000000;
