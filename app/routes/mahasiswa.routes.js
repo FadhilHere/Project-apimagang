@@ -1,9 +1,7 @@
 module.exports = (app) => {
-  const datamhs = require("../controllers/datamahasiswa.controller");
-
+  const mahasiswa = require("../controllers/mahasiswa.controller.js");
   var router = require("express").Router();
 
-  //router.post("/", datamhs.create);
   var multer = require("multer");
   var path = require("path");
   const generateFileName = () => {
@@ -39,15 +37,17 @@ module.exports = (app) => {
       callback(null, true);
     },
   });
-  router.post("/", upload.any(), datamhs.create);
+  router.post("/", upload.any(), mahasiswa.create);
 
-  router.get("/", datamhs.findAll);
+  router.get("/", mahasiswa.findAll);
 
-  router.get("/:id", datamhs.findOne);
+  router.get("/find/:id", mahasiswa.findOne);
 
-  router.put("/:id", upload.any(), datamhs.update);
+  router.put("/:id", upload.any(), mahasiswa.update);
 
-  router.delete("/:id", datamhs.delete);
+  router.delete("/:id", mahasiswa.delete);
 
-  app.use("/api/datamhs", router);
+  router.get("/findByKelas", mahasiswa.findByKelas);
+
+  app.use("/api/mahasiswa", router);
 };

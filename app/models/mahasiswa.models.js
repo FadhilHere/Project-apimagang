@@ -1,32 +1,32 @@
 const { Schema } = require("mongoose");
 
 module.exports = (mongoose) => {
-  const Datamhs = mongoose.model(
-    "datamahasiswa",
+  const Mahasiswa = mongoose.model(
+    "mahasiswa",
     mongoose.Schema(
       {
-        nim: String,
+        foto: String,
         nama: String,
-        id_prodi: {
+        nim: String,
+        nik: String,
+        jenisKelamin: String,
+        id_programStudi: {
           type: Schema.Types.ObjectId,
           ref: "prodi",
         },
-        email: String,
-        alamat: String,
-        notelp: String,
-        alamatortu: String,
-        foto: String,
-        nik: String,
-        gender: String,
         id_kelas: {
           type: Schema.Types.ObjectId,
           ref: "kelas",
         },
+        email: String,
+        alamat: String,
+        noTelp: String,
+        alamatOrtu: String,
       },
       {
         timestamps: true,
       }
     )
   );
-  return Datamhs;
+  return Mahasiswa;
 };
