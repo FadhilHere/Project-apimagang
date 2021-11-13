@@ -24,7 +24,8 @@ module.exports = (app) => {
         ext !== ".png" &&
         ext !== ".jpg" &&
         ext !== ".gif" &&
-        ext !== ".jpeg"
+        ext !== ".jpeg" &&
+        ext !== ".JPG"
       ) {
         return callback(/*res.end('Only images are allowed')*/ null, false);
       }
