@@ -3,10 +3,10 @@ const Mahasiswa = db.mahasiswa;
 
 exports.create = (req, res) => {
   const mahasiswa = new Mahasiswa({
-    foto: req.files[0].filename,
     nama: req.body.nama,
     nim: req.body.nim,
     nik: req.body.nik,
+    foto: req.files[0].filename,
     jenisKelamin: req.body.jenisKelamin,
     id_programStudi: req.body.id_programStudi,
     id_kelas: req.body.id_kelas,
