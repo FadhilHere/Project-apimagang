@@ -19,8 +19,8 @@ exports.create = (req, res) => {
     kecamatanMhs: req.body.kecamatanMhs,
     kodeposMhs: req.body.kodeposMhs,
     kabupatenOrtu: req.body.kabupatenOrtu, //sadf
-    kecamatanOrtu: req.body.kacamatanOrtu,
-    kodepostOrtu: req.body.kodepostOrtu,
+    kecamatanOrtu: req.body.kecamatanOrtu,
+    kodepostOrtu: req.body.kodeposOrtu,
   });
 
   // Save Mahasiswa in the database
