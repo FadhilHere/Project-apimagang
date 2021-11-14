@@ -17,7 +17,7 @@ exports.create = (req, res) => {
     kabutapenMhs: req.body.kabutapenMhs,
     kecamatanMhs: req.body.kecamatanMhs,
     kodeposMhs: req.body.kodepos,
-    kabupatenOrtu: req.body.kabupatenOrtu,
+    kabupatenOrtu: req.body.kabupatenOrtu, //sadf
     kecamatanOrtu: req.body.kacamatanMhs,
     kodepostOrtu: req.body.kodepostOrtu,
   });
