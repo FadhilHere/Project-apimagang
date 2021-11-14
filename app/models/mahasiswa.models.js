@@ -26,6 +26,7 @@ module.exports = (mongoose) => {
         alamat: String,
         noTelp: String,
         alamatOrtu: String,
+
         kabupatenMhs: String,
         kecamatanMhs: String,
         kodeposMhs: String,
