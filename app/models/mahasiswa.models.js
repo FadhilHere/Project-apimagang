@@ -10,14 +10,18 @@ module.exports = (mongoose) => {
         nim: String,
         nik: String,
         jenisKelamin: String,
-        id_programStudi: {
-          type: Schema.Types.ObjectId,
-          ref: "prodi",
-        },
-        id_kelas: {
-          type: Schema.Types.ObjectId,
-          ref: "kelas",
-        },
+        id_programStudi: [
+          {
+            type: Schema.Types.ObjectId,
+            ref: "prodi",
+          },
+        ],
+        id_kelas: [
+          {
+            type: Schema.Types.ObjectId,
+            ref: "kelas",
+          },
+        ],
         email: String,
         alamat: String,
         noTelp: String,
