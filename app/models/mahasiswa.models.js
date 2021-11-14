@@ -30,8 +30,8 @@ module.exports = (mongoose) => {
         kecamatanMhs: String,
         kodeposMhs: String,
         kabupatenOrtu: String,
-        kecamatanMhs: String,
-        kodeposMhs: String,
+        kecamatanOrtu: String,
+        kodeposOrtu: String,
       },
       {
         timestamps: true,
