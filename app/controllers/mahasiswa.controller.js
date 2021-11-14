@@ -14,6 +14,12 @@ exports.create = (req, res) => {
     alamat: req.body.alamat,
     noTelp: req.body.noTelp,
     alamatOrtu: req.body.alamatOrtu,
+    kabutapenMhs: req.body.kabutapenMhs,
+    kecamatanMhs: req.body.kecamatanMhs,
+    kodeposMhs: req.body.kodepos,
+    kabupatenOrtu: req.body.kabupatenOrtu,
+    kecamatanOrtu: req.body.kacamatanMhs,
+    kodepostOrtu: req.body.kodepostOrtu,
   });
 
   // Save Mahasiswa in the database

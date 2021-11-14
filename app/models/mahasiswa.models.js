@@ -26,6 +26,12 @@ module.exports = (mongoose) => {
         alamat: String,
         noTelp: String,
         alamatOrtu: String,
+        kabupatenMhs: String,
+        kecamatanMhs: String,
+        kodeposMhs: String,
+        kabupatenOrtu: String,
+        kecamatanMhs: String,
+        kodeposMhs: String,
       },
       {
         timestamps: true,
