@@ -97,6 +97,12 @@ exports.update = (req, res) => {
     alamat: req.body.alamat,
     noTelp: req.body.noTelp,
     alamatOrtu: req.body.alamatOrtu,
+    kabupatenMhs: req.body.kabupatenMhs,
+    kecamatanMhs: req.body.kecamatanMhs,
+    kodeposMhs: req.body.kodeposMhs,
+    kabupatenOrtu: req.body.kabupatenOrtu,
+    kecamatanOrtu: req.body.kecamatanOrtu,
+    kodeposOrtu: req.body.kodeposOrtu,
   };
 
   Mahasiswa.findByIdAndUpdate(id, mahasiswa2, { useFindAndModify: false })
