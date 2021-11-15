@@ -10,24 +10,30 @@ exports.create = (req, res) => {
   // Save Kelas in the database
   Kelas.find({
     kelas: req.body.kelas,
-  }).then((data) => {
-    console.log(data[0]);
-    if (!data[0]) {
-      kelas
-        .save(kelas)
-        .then((data) => {
-          res.send(data);
-        })
-        .catch((err) => {
-          res.status(500).send({
-            message:
-              err.message || "Some error occurred while creating the matkul.",
+  })
+    .then((data) => {
+      console.log(data[0]);
+      if (!data[0]) {
+        kelas
+          .save(kelas)
+          .then((data1) => {
+            res.send(data1);
+          })
+          .catch((err) => {
+            res.status(500).send({
+              message:
+                err.message || "Some error occurred while creating the Kelas.",
+            });
           });
-        });
-    } else {
-      res.status(404).send({ message: "kelas yg anda input sudah ada!" });
-    }
-  });
+      } else {
+        res.status(412).send({ message: "Kelas sudah terdaftar" });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Some error occurred while retrieving.",
+      });
+    });
 };
 
 exports.findAll = (req, res) => {
