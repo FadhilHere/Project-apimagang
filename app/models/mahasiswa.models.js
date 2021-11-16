@@ -26,13 +26,14 @@ module.exports = (mongoose) => {
         alamat: String,
         noTelp: String,
         alamatOrtu: String,
-
+        provinsiMhs: String,
         kabupatenMhs: String,
         kecamatanMhs: String,
         kodeposMhs: String,
         kabupatenOrtu: String,
         kecamatanOrtu: String,
         kodeposOrtu: String,
+        provinsiOrtu: String,
       },
       {
         timestamps: true,
