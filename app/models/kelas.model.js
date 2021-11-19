@@ -6,12 +6,10 @@ module.exports = (mongoose) => {
     mongoose.Schema(
       {
         kelas: String,
-        id_matakuliah: [
-          {
-            type: Schema.Types.ObjectId,
-            ref: "matkul",
-          },
-        ],
+        id_matakuliah: {
+          type: Schema.Types.ObjectId,
+          ref: "matkul",
+        },
       },
       {
         timestamps: true,
