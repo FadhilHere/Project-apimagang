@@ -6,7 +6,7 @@ exports.create = (req, res) => {
     nama: req.body.nama,
     nim: req.body.nim,
     nik: req.body.nik,
-    foto: req.files[0].filename,
+    foto: req.files[0].filename, //asdfasd
     jenisKelamin: req.body.jenisKelamin,
     id_programStudi: req.body.id_programStudi,
     id_kelas: req.body.id_kelas,
@@ -148,3 +148,19 @@ exports.delete = (req, res) => {
 exports.deleteAll = (req, res) => {};
 
 exports.findAllPublished = (req, res) => {};
+
+exports.findByKelas = (req, res) => {
+  Mahasiswa.find({
+    $match: {
+      id_kelas: req.query.kelas,
+    },
+  })
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Some error occurred while retrieving.",
+      });
+    });
+};
