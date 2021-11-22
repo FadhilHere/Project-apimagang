@@ -6,7 +6,7 @@ exports.create = (req, res) => {
     nama: req.body.nama,
     nim: req.body.nim,
     nik: req.body.nik,
-    foto: req.files[0].filename, //asdfasd
+    // foto: req.files[0].filename, //asdfasd
     jenisKelamin: req.body.jenisKelamin,
     id_programStudi: req.body.id_programStudi,
     id_kelas: req.body.id_kelas,
