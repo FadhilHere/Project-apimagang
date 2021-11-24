@@ -109,37 +109,37 @@ exports.update = (req, res) => {
     provinsiOrtu: req.body.provinsiOrtu,
   };
 
-  // Mahasiswa.findByIdAndUpdate(id, mahasiswa2, { useFindAndModify: false })
-  //   .then((data) => {
-  //     if (!data) {
-  //       res.status(404).send({
-  //         message: `Cannot update Mahasiswa with id=${id}. Maybe Mahasiswa was not found!`,
-  //       });
-  //     } else res.send({ message: "Mahasiswa was updated successfully." });
-  //   })
-  //   .catch((err) => {
-  //     res.status(500).send({
-  //       message: "Error updating Mahasiswa with id=" + id,
-  //     });
-  //   });
-  Mahasiswa.find({
-    nim: req.body.nim,
-  }).then((data) => {
-    console.log(data[0]);
-    if (!data[0]) {
-      Mahasiswa.findByIdAndUpdate(id, mahasiswa2, {
-        useFindAndModify: false,
-      }).then((data) => {
-        if (!data) {
-          res.status(404).send({
-            message: `Cant find Kelas with id=${id}.`,
-          });
-        } else res.send({ message: "mahasiswa updated!" });
+  Mahasiswa.findByIdAndUpdate(id, mahasiswa2, { useFindAndModify: false })
+    .then((data) => {
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot update Mahasiswa with id=${id}. Maybe Mahasiswa was not found!`,
+        });
+      } else res.send({ message: "Mahasiswa was updated successfully." });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Error updating Mahasiswa with id=" + id,
       });
-    } else {
-      res.status(404).send({ message: "NIM yg anda input sudah ada!" });
-    }
-  });
+    });
+  // Mahasiswa.find({
+  //   nim: req.body.nim,
+  // }).then((data) => {
+  //   console.log(data[0]);
+  //   if (!data[0]) {
+  //     Mahasiswa.findByIdAndUpdate(id, mahasiswa2, {
+  //       useFindAndModify: false,
+  //     }).then((data) => {
+  //       if (!data) {
+  //         res.status(404).send({
+  //           message: `Cant find Kelas with id=${id}.`,
+  //         });
+  //       } else res.send({ message: "mahasiswa updated!" });
+  //     });
+  //   } else {
+  //     res.status(404).send({ message: "NIM yg anda input sudah ada!" });
+  //   }
+  // });
 };
 exports.delete = (req, res) => {
   const id = req.params.id;
